@@ -15,18 +15,17 @@
 
 ## Pseudocode:
 <code> 
-#stage 1
-u = Input(shape=(1,)) # u for user
-m = Input(shape=(1,)) # m for movie
-
-#stage 2: convert u and m to feature vectors using embeddings
-u_emb = Embedding(num_users, embedding_dim)(u)
-m_emb = Embedding(num_users, embedding_dim)(m)
-
-#stage 3: concatenate for a single feature vector
-x = Concat()(u_emb, m_emb)
-
-#stage 4: model using ANN
-x = Dense(512, activation='relu')(x)
-x = Dense(1)(x)
+    
+    # stage 1
+    u = Input(shape=(1,)) # u for user
+    m = Input(shape=(1,)) # m for movie
+    # stage 2: convert u and m to feature vectors using embeddings
+    u_emb = Embedding(num_users, embedding_dim)(u)
+    m_emb = Embedding(num_users, embedding_dim)(m)
+    # Need to flatten each of embeddings
+    # stage 3: concatenate for a single feature vector
+    x = Concat()(u_emb, m_emb)
+    #stage 4: model using ANN
+    x = Dense(512, activation='relu')(x)
+    x = Dense(1)(x)
 </code>
